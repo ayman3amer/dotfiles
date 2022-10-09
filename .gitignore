@@ -1,0 +1,7 @@
+**/#*#
+**/*.git
+**/*.swp
+*.directory
+*.log
+*.sql
+*.sqlite
