@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Usage: Merge the patches from all of your branches, after properly applying them.
+
+# add items to the excluded_branches array to exclude them from being merged into master
+
+excluded_branches=(
+
+)
+
+arrayContainsElement () {
+  local e match="$1"
+  shift
+  for e; do [[ "$e" == "$match" ]] && return 0; done
+  return 1
+}
+
+# files are only generated after all branches have been merged
+if [ -f config.h ];then
+    make clean && rm -f config.h
+fi
+
+for branch in $(git branch --no-merged | tr -d '[:blank:]'); do
+	if [ "$branch" != "master" ];then
+        arrayContainsElement "$branch" "${excluded_branches[@]}"
+        if [ $? -eq 1 ]; then
+            echo "************ Merging $branch ************"
+		    git merge $branch -m $branch
+            if [ $? -ne 0 ];then
+                exit 1
+            fi
+        fi
+	fi
+done
+
+make && sudo make clean install

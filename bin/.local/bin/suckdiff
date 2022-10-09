@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Usage: Create .diff files based on your branches.
+
+# If you already successfully applied a patch in a branch and fixed any possible errors, then the created .diff will
+# also reflect those changes and when applying that patch, there will also be no errors.
+# These diffs can be applied directly to your master branch.
+
+git checkout master &&
+dotfiles="$HOME/.config/dwm"
+diffdir="${dotfiles}/fixed_patch_diffs/"
+olddiffdir="${dotfiles}/fixed_patch_diffs/old/"
+rm -rf "$olddiffdir" &&
+mkdir -p "$olddiffdir" &&
+mkdir -p "$diffdir" &&
+mv "$diffdir"*.diff "$olddiffdir" || true &&
+make clean && rm -f config.h && git reset --hard forked/master &&
+for branch in $(git for-each-ref --format='%(refname)' refs/heads/ | cut -d'/' -f3); do
+	if [ "$branch" != "master" ];then
+        remote_commit_short_hash=$(git merge-base original/master $branch | awk '{print substr($1,0,7)}')
+        remote_commit_date=$(git show --format="%ci %cr" $short_hash | head -n 1 | awk '{print $1}')
+        local_commit_date=$(git log -1 --format="%ci" $branch | awk '{print $1}')
+        # ':!folder' is a git feature to exclude paths and files. It can also be used in this format ':(exclude)folder'
+		git diff master..$branch -- . ':!patches' > "${diffdir}dwm_${branch}_${remote_commit_short_hash}_remote-commit=${remote_commit_date}_local-commit=${local_commit_date}.diff"
+	fi
+done
