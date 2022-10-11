@@ -3,7 +3,7 @@
 # Executed every restart #
 ##########################
 
-~/.fehbg &
+~/.local/bin/fehbg &
 xrdb ~/.Xresources
 killall dwmblocks
 dwmblocks &
@@ -26,8 +26,8 @@ fi
 # ------------
 
 nm-applet &
-volumeicon &
 discord --start-minimized &
+
 
 # --------------------
 #  background daemons
