@@ -32,5 +32,3 @@ for branch in $(git branch --no-merged | tr -d '[:blank:]'); do
         fi
 	fi
 done
-
-make && sudo make clean install
