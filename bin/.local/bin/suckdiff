@@ -7,7 +7,7 @@
 # These diffs can be applied directly to your master branch.
 
 git checkout master &&
-dotfiles="$HOME/.config/dwm"
+dotfiles="$HOME/resources/github/dotfiles/dwm/.local/share/dwm"
 diffdir="${dotfiles}/fixed_patch_diffs/"
 olddiffdir="${dotfiles}/fixed_patch_diffs/old/"
 rm -rf "$olddiffdir" &&
