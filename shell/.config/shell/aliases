@@ -1,16 +1,20 @@
-alias p='sudo pacman'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias ls='ls --color=auto'
-alias ll='ls -l --color=auto'
-alias la='ls -A --color=auto'
-alias ls.='ls -A --color=auto | egrep "^\."'
-alias merge='xrdb -merge ~/.Xresources'
-alias ..='cd ..'
-alias q='exit'
-alias h='cd ~/'
-alias c='clear'
-alias stow='stow -vt ~'
-alias stown='stow -nvt ~'
+#!/bin/sh
 
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	mkd="mkdir -pv" \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ka="killall" \
+	p="sudo pacman" \
+	merge='xrdb -merge ~/.Xresources' \
+ 	ll="ls -l" \
+	lla="ls -lA" \
+	la="ls -a" \
+	..='cd ..' \
+	h='cd ~/' \
+	c='clear' \
+	stowvt='stow -vt ~' \   
