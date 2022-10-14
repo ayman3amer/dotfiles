@@ -23,11 +23,7 @@ fi
 
 # ------------
 #  tray icons
-# ------------
-
-nm-applet &
-discord --start-minimized &
-
+# -----------
 
 # --------------------
 #  background daemons

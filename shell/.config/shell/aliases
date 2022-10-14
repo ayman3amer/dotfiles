@@ -16,5 +16,9 @@ alias \
 	la="ls -a" \
 	..='cd ..' \
 	h='cd ~/' \
-	c='clear' \
-	stowvt='stow -vt ~' \   
+	mousepad='devour mousepad' \
+	mpv='devour mpv' \
+	sxiv='devour sxiv' \
+	zathura='devour zathura' \
+	zathura='devour zathura' \
+

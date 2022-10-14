@@ -1,9 +1,17 @@
 #!/bin/bash 
 
 vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+msgTag="myvolume"
 
-# If muted, print 🔇 and exit.
-[ "$vol" != "${vol%\[MUTED\]}" ] && echo 🔇 && exit
+function send_notification {
+if [ "$vol" != "${vol%\[MUTED\]}" ]; then
+    dunstify -a "changeVolume" -u low -i /usr/share/icons/Papirus-Dark/24x24/actions/audio-volume-muted.svg -h string:x-dunst-stack-tag:$msgTag "Volume muted" 
+	echo 🔇 && exit
+else
+ 	dunstify -a "changeVolume" -u low -i /usr/share/icons/Papirus-Dark/24x24/actions/audio-volume-high.svg -h string:x-dunst-stack-tag:$msgTag \
+    	-h int:value:"$vol" "Volume: ${vol}%"
+fi
+}
 
 vol="${vol#Volume: }"
 split() {
@@ -22,4 +30,5 @@ case 1 in
 	* ) echo 🔇 && exit ;;
 esac
 
+send_notification
 echo "$icon$vol%"
