@@ -84,3 +84,9 @@ lazyg() {
 	git commit -m "$1"
 	git push
 }
+fcd(){
+    cd "$(find -type d | fzf)"
+}
+open(){
+    xdg-open "$(find -type f | fzf)"
+}

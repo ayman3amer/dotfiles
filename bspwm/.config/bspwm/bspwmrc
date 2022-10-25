@@ -1,7 +1,6 @@
 #! /bin/sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &
-$HOME/.config/polybar/launch.sh
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
@@ -26,9 +25,12 @@ bspc rule -a Screenkey manage=off
 bspc rule -a xdman-Main state=floating
 
 dunst &
-nitrogen --restore &
+~/.local/bin/fehbg &
 picom &
 lxsession &
 mate-power-manager &
-xss-lock --transfer-sleep-lock -- i3lock -i ~/Pictures/a.png &
+# redshift
+redshift-gtk &
+# locker
+/home/ayman/.local/bin/locker &
 xsetroot -cursor_name left_ptr &

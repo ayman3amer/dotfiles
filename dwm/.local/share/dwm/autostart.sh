@@ -20,33 +20,29 @@ if [ $? -ne 0 ]; then
     exit 0
 fi
 
-
 # ------------
 #  tray icons
 # -----------
+
 
 # --------------------
 #  background daemons
 # --------------------
 
-# color temperature
-# xflux -l '38' -g '-9' -k 4500 &
-
-# notifications
+# notifications server
 dunst -c ~/.config/dunst/dunstrc &
 
 # power manager
 mate-power-manager &
 
-#sxhkd
-sxhkd &
+# shortcut manager
+sxhkd -c ~/.config/sxhkd/dwm_sxhkdrc &
 
-# redshift
-redshift-gtk &
+# color temperature 
+redshift &
 
 # locker
 /home/ayman/.local/bin/locker &
-
 
 # -----------------
 #  startup actions

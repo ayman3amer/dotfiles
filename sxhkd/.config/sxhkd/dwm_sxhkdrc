@@ -10,10 +10,13 @@ super + shift + d
 # browser
 super + w
 	$BROWSER
-
 # lock screen
 super + shift + l
 	/home/ayman/.local/bin/lock
+
+# screenshot
+Print
+	flameshot gui
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -31,7 +34,9 @@ super + shift + p
 super + p
 	pcmanfm
 super + r
-	alacritty -e ranger
+	alacritty -e lfub
+super + c
+	code
 
 # media keys
 XF86AudioMute
@@ -48,3 +53,6 @@ XF86AudioPause
 	playerctl play-pause
 XF86AudioPlay
 	playerctl play-pause
+
+
+
