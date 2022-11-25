@@ -1,9 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-THEME="dracula"
+# Terminate already running bar instances
+killall -q polybar
+# If all your bars have ipc enabled, you can also use
+# polybar-msg cmd quit
 
-killall polybar
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+# Launch Polybar, using default config location ~/.config/polybar/config.ini
+polybar mybar 2>&1 | tee -a /tmp/polybar.log & disown
 
-CONFIG_DIR=$(dirname $0)/themes/$THEME/config.ini
-polybar main -c $CONFIG_DIR &
+echo "Polybar launched..."

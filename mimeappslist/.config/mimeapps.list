@@ -11,4 +11,4 @@ image/png=img.desktop
 image/gif=img.desktop
 inode/directory=file.desktop
 video/mp2t=mpv.desktop
-
+video/x-matroska=mpv.desktop
